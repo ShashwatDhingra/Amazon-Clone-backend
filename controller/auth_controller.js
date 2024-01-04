@@ -15,7 +15,7 @@ class AuthController {
 
         const response = await authService.signin(email, password);
 
-        res.status(response.statusCode).json(response.statusCode);
+        res.status(response.statusCode).json(response);
     }
 }
 
