@@ -7,11 +7,15 @@ class AuthController {
 
         const response = await authService.signup(name, email, password);
 
-        if(response.status){
-            res.status(response.statusCode).json(response);
-        }else{
-            res.status(response.statusCode).json(response);
-        }
+        res.status(response.statusCode).json(response);
+    }
+
+    async signin(req, res) {
+        const { email, password } = req.body;
+
+        const response = await authService.signin(email, password);
+
+        res.status(response.statusCode).json(response.statusCode);
     }
 }
 
