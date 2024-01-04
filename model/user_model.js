@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
             validator: function (value) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
             },
-            message: 'Invalid email format',
+            message: 'Invalid email format'
         },
     },
     password: { type: String, required: true },

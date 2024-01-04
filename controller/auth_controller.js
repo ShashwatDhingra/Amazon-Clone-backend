@@ -8,9 +8,9 @@ class AuthController {
         const response = await authService.signup(name, email, password);
 
         if(response.status){
-            res.status(200).json(response);
+            res.status(response.statusCode).json(response);
         }else{
-            res.status(400).json(response);
+            res.status(response.statusCode).json(response);
         }
     }
 }
