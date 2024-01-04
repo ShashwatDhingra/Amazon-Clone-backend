@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 class Utils {
-    generateToken(email) {
-        return jwt.sign({ email }, 'amazon-clone');
+    generateToken(id) {
+        return jwt.sign({ id }, 'amazon-clone');
     }
 }
 

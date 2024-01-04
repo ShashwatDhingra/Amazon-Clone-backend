@@ -1,5 +1,6 @@
 const userModel = require('../model/user_model')
 const utils = require('../utils/utils');
+const bcrypt = require('bcrypt');
 
 class AuthService {
     // Signup
@@ -15,26 +16,32 @@ class AuthService {
 
             const user = await newUser.save();
 
-            return { status: true,  statusCode: 200, message: "User created" , user};
+            return { status: true, statusCode: 200, message: "User created", user };
         } catch (e) {
-            return {status: false, statusCode: 500, error: e.message}
+            return { status: false, statusCode: 500, error: e.message }
         }
     }
 
-    async signin(email, password){
-        try{
+    async signin(email, password) {
+        try {
             // Check user
-            const existingUser = await userModel.findOne({email});
+            const existingUser = await userModel.findOne({ email });
 
-            if(!existingUser){
-                return {status: false, statusCode: 400, message: "User doesn't exists"};
+            if (!existingUser) {
+                return { status: false, statusCode: 400, message: "User doesn't exists" };
             }
 
-            const token = utils.generateToken(email);
+            const isPasswordMatch = await bcrypt.compare(password, existingUser.password);
 
-            return {status: true, statusCode: 200, token};
-        }catch(e){
-            return {status: false, statusCode: 500, error: e.message};
+            if (!isPasswordMatch) {
+                return { status: false, statusCode: 400, message: "Password doesn't match" };
+            }
+
+            const token = utils.generateToken(existingUser._id);
+
+            return { status: true, statusCode: 200, token , ...existingUser._doc};
+        } catch (e) {
+            return { status: false, statusCode: 500, error: e.message };
         }
     }
 }
