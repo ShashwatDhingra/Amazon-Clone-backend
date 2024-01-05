@@ -19,7 +19,8 @@ class AuthController {
     }
 
     async tokenIsValid(req, res){
-        const {token} = req.header('x-auth-token');
+
+        const token = req.header('x-auth-token');
 
         const response = await authService.tokenIsValid(token);
 

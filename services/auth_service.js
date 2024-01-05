@@ -47,15 +47,14 @@ class AuthService {
 
     async tokenIsValid(token) {
         try {
-            if (!token) return { status: false, statusCode: 200 };
-
-            const isVerified = utils.verifyToken(token);
+            if (!token) {
+                return { status: false, statusCode: 200 };
+            }
+            const isVerified = await utils.verifyToken(token);
 
             if (!isVerified) return { status: false, statusCode: 200 };
 
             const user = userModel.findById(isVerified.id);
-
-            console.log(user);
 
             if (!user) return { status: false, statusCode: 200 };
 
@@ -63,6 +62,7 @@ class AuthService {
 
 
         } catch (e) {
+            console.log(e.message);
             return { status: false, statusCode: 500, error: e.messsage };
         }
     }
