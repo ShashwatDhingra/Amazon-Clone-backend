@@ -9,4 +9,7 @@ router.post('/signup', authController.singup);
 // Signin
 router.post('/signin', authController.signin);
 
+// Is Token Valid
+router.post('/tokenIsValid', authController.tokenIsValid);
+
 module.exports = router;

@@ -39,9 +39,31 @@ class AuthService {
 
             const token = utils.generateToken(existingUser._id);
 
-            return { status: true, statusCode: 200, token , ...existingUser._doc};
+            return { status: true, statusCode: 200, token, ...existingUser._doc };
         } catch (e) {
             return { status: false, statusCode: 500, error: e.message };
+        }
+    }
+
+    async tokenIsValid(token) {
+        try {
+            if (!token) return { status: false, statusCode: 200 };
+
+            const isVerified = utils.verifyToken(token);
+
+            if (!isVerified) return { status: false, statusCode: 200 };
+
+            const user = userModel.findById(isVerified.id);
+
+            console.log(user);
+
+            if (!user) return { status: false, statusCode: 200 };
+
+            return { status: true, statusCode: 200 };
+
+
+        } catch (e) {
+            return { status: false, statusCode: 500, error: e.messsage };
         }
     }
 }

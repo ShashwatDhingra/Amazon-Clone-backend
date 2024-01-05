@@ -17,6 +17,18 @@ class AuthController {
 
         res.status(response.statusCode).json(response);
     }
+
+    async tokenIsValid(req, res){
+        const {token} = req.header('x-auth-token');
+
+        const response = await authService.tokenIsValid(token);
+
+        if(response.statusCode == 500){
+            return res.status(500).json(response);
+        }
+
+        res.status(response.statusCode).json(response.status);
+    }
 }
 
 module.exports = new AuthController();
