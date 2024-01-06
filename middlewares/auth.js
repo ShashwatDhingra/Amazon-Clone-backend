@@ -6,7 +6,7 @@ const auth = async (req, res, next) =>{
         const token = req.header('x-auth-token');
         if(!token) return res.status(401).json({status: false, statusCode: 401, message: "No auth token"})
 
-        const isVerified = utils.verifyToken(token);
+        const isVerified = await utils.verifyToken(token);
         if(!isVerified) return res.status(401).json({status: false, statusCode: 401, message: "Token verification failed, authorization denied."})
 
         req.user = isVerified.id;
