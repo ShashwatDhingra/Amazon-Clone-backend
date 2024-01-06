@@ -52,7 +52,7 @@ class AuthService {
             }
             const isVerified = await utils.verifyToken(token);
 
-            if (!isVerified) return { status: false, statusCode: 200 };
+            if (!isVerified) return { status: false, statusCode: 401 };
 
             const user = userModel.findById(isVerified.id);
 
@@ -65,6 +65,11 @@ class AuthService {
             console.log(e.message);
             return { status: false, statusCode: 500, error: e.messsage };
         }
+    }
+
+    async getUser(id, token) {
+        const user = userModel.findById(id);
+        return { status: true, statusCode: 200, ...user._doc, token };
     }
 }
 

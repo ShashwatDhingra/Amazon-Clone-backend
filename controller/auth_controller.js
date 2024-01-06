@@ -30,6 +30,17 @@ class AuthController {
 
         res.status(response.statusCode).json(response.status);
     }
+
+    async getUser(req, res){
+
+        const id = req.user;
+        const token = req.token;
+
+        const response = await authService.getUser(id, token);
+
+        res.status(response.statusCode).json(response);
+        
+    }
 }
 
 module.exports = new AuthController();
