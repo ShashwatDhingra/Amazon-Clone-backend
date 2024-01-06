@@ -68,7 +68,7 @@ class AuthService {
     }
 
     async getUser(id, token) {
-        const user = userModel.findById(id);
+        const user = userModel.findOne({_id : id});
         return { status: true, statusCode: 200, ...user._doc, token };
     }
 }
