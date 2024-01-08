@@ -10,6 +10,15 @@ class AdminController {
             res.status(500).json({ status: false, statusCode: 500, error: e.message });
         }
     }
+
+    async getProducts(req, res) {
+        try {
+            const response = await adminService.getProducts();
+            res.status(response.statusCode).json(response);
+        } catch (e) {
+            res.status(500).json({ status: false, statusCode: 500, error: e.message });
+        }
+    }
 }
 
 module.exports = new AdminController();
