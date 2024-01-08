@@ -8,7 +8,6 @@ const app = express();
 
 app.use(express.json())
 app.use(cors())
-app.use('/auth', authRouter);  // => prefix : /auth/<individual-route>
-app.use('/admin', adminRouter) // => prefix : /admin/<individual-route>
-
+app.use('/auth', authRouter);   // => prefix : /auth/<individual-route>
+app.use('/admin', adminRouter); // => prefix : /admin/<individual-route>
 module.exports = app;

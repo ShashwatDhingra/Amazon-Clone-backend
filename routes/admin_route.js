@@ -3,9 +3,9 @@ const express = require('express');
 const adminMiddleware = require('../middlewares/admin')
 const adminController = require('../controller/admin_controller')
 
-const Router = express.Router();
+const router = express.Router();
 
 // Add Product
-Router.post('/add-product', adminMiddleware, adminController.addProduct);
+router.post('/add-product', adminMiddleware, adminController.addProduct);
 
-module.exports = Router;
+module.exports = router;
