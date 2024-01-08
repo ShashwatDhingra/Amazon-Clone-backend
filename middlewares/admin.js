@@ -17,9 +17,6 @@ const admin = async (req, res, next) => {
         if (!(user.type == 'admin')) return res.status(401).json({ status: false, statusCode: 401, message: 'Sorry --  You are not an admin' });
 
         // Completely verified -- move ahead
-        req.id = isVerified.id;
-        req.token = token;
-
         next();
     } catch (e) {
         res.status(500).json({ status: false, statusCode: 500, error: e.message });
