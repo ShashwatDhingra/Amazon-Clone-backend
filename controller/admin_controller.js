@@ -22,9 +22,9 @@ class AdminController {
 
     async deleteProduct(req, res){
         try{
-            const {id} = req.body;
+            const {_id} = req.body;
 
-            const response = await adminService.deleteProduct(id);
+            const response = await adminService.deleteProduct(_id);
 
             res.status(response.statusCode).json(response);
         }catch(e){
