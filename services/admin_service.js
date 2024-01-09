@@ -1,4 +1,6 @@
+const { default: mongoose } = require('mongoose');
 const productModel = require('../model/product_model');
+const { ObjectId } = require('mongodb');
 
 class AdminService {
     async addProduct(name, description, price, quantity, category, images) {
@@ -17,10 +19,20 @@ class AdminService {
     async getProducts() {
         try {
             const products = await productModel.find({});
-            console.log(products);
             return { status: true, statusCode: 200, products };
         } catch (e) {
             return { status: false, statusCode: 500, error: e.message };
+        }
+    }
+
+    async deleteProduct(_id){
+        try{
+            const result = await productModel.deleteOne({_id});
+            if(result.deletedCount > 0) return {status: true, statusCode: 200, message: "Product Deleted !"};
+
+            return {status: false, statusCode: 404, message: "Product not found."};
+        }catch(e){
+            return {status: false, statusCode: 500, error: e.message};
         }
     }
 }

@@ -19,6 +19,18 @@ class AdminController {
             res.status(500).json({ status: false, statusCode: 500, error: e.message });
         }
     }
+
+    async deleteProduct(req, res){
+        try{
+            const {id} = req.body;
+
+            const response = await adminService.deleteProduct(id);
+
+            res.status(response.statusCode).json(response);
+        }catch(e){
+            res.status(500).json({status: false, statusCode: 500, error: e.message});
+        }
+    }
 }
 
 module.exports = new AdminController();
