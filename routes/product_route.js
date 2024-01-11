@@ -10,4 +10,7 @@ Router.get('/get-products', authMiddleware, productController.getCategoryProduct
 // Get Searched Products
 Router.get('/get-products/:searchQuery', authMiddleware, productController.getSearchedProducts)
 
+// Rate the Product
+Router.post('/rate-product', authMiddleware, productController.rateProduct);
+
 module.exports = Router;

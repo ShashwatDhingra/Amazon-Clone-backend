@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+
+const ratingSchema = require('./rating_schema')
 const db = require('../config/db');
 
 
@@ -12,8 +14,8 @@ const productSchema = new mongoose.Schema({
         {
             type: String, required: true
         }
-    ]
-    // rating
+    ],
+    rating: [ratingSchema]
 });
 
 const productModel = db.model('products', productSchema);
