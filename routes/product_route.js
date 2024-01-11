@@ -13,4 +13,7 @@ Router.get('/get-products/:searchQuery', authMiddleware, productController.getSe
 // Rate the Product
 Router.post('/rate-product', authMiddleware, productController.rateProduct);
 
+// Deal of the Day
+Router.get('/deal-of-the-day', authMiddleware, productController.fetchDealOfTheDay);
+
 module.exports = Router;
