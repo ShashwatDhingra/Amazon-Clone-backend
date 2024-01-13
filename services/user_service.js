@@ -31,6 +31,7 @@ class UserService {
                 }
             }
 
+            user.cart = [];
             user = await user.save();
 
             return { status: true, statusCode: 200, user};
