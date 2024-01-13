@@ -1,5 +1,5 @@
 const { default: mongoose } = require('mongoose');
-const productModel = require('../model/product_model');
+const {productModel} = require('../model/product_model');
 const { ObjectId } = require('mongodb');
 
 class AdminService {

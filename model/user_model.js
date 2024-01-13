@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const db = require('../config/db')
+const db = require('../config/db');
 const bcrypt = require('bcrypt');
+const {productSchema} = require('../model/product_model')
 
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true, trim: true },
@@ -17,9 +18,15 @@ const userSchema = new mongoose.Schema({
     type: {
         type: String,
         default: "user"
-    }
+    },
 
-    // Cart
+    cart: [{
+        product: productSchema,
+        quantity: {
+            type: Number,
+            required: true
+        }
+    }]
 })
 
 // middleware function

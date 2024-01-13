@@ -3,7 +3,8 @@ const cors = require('cors');
 
 const authRouter = require('./routes/auth_route');
 const adminRouter = require('./routes/admin_route');
-const productRouter = require('./routes/product_route')
+const productRouter = require('./routes/product_route');
+const userRouter = require('./routes/user_route');
 
 const app = express();
 
@@ -12,4 +13,5 @@ app.use(cors())
 app.use('/auth', authRouter);   // => prefix : /auth/<individual-route>
 app.use('/admin', adminRouter); // => prefix : /admin/<individual-route>
 app.use('/product', productRouter); // => prefix : /admin/<individual-route>
+app.use('/user', userRouter); // => prefix: /user/<individual-route>
 module.exports = app;

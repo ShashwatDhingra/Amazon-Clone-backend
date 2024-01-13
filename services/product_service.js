@@ -1,4 +1,4 @@
-const productModel = require('../model/product_model');
+const {productModel} = require('../model/product_model');
 const ratingSchema = require('../model/rating_schema');
 
 class ProductService {
