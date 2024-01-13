@@ -4,6 +4,7 @@ const { productModel } = require('../model/product_model')
 class UserService {
     async addToCart(productId, userId) {
         try {
+            console.log(productId);
             const product = await productModel.findById(productId);
             console.log(product);
             let user = await userModel.findById(userId);
