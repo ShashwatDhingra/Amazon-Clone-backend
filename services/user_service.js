@@ -51,7 +51,7 @@ class UserService {
         }
       }
 
-      return { status: true, statusCode: 200, error: e.message };
+      return { status: true, statusCode: 200, user };
     } catch (e) {
       return { status: false, statusCode: 500, error: e.message };
     }
