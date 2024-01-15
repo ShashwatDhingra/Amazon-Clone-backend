@@ -13,6 +13,17 @@ class UserController{
         }
     }
 
+    // Remove From Cart
+    async removeFromCart(req, res){
+        try{
+            const{productId} = req.body;
+            const response = await userServices.removeFromCart(productId, req.user);
+            res.status(response.statusCode).json(response);
+        }catch(e){
+            res.status(500).json({status: false, statusCode: 500, error: e.message});
+        }
+    }   
+
 }
 
 module.exports = new UserController();
