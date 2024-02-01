@@ -56,6 +56,24 @@ class UserService {
       return { status: false, statusCode: 500, error: e.message };
     }
   }
+
+  async saveAddress(address, id) {
+    try {
+      const user = await userModel.findById(id);
+
+      console.log(user.email);
+
+      user.address = address;
+
+      await user.save();
+
+      console.log(user.address);
+
+      return { status: true, statusCode: 200, address };
+    } catch (e) {
+      return { status: false, statusCode: 500, error: e.message };
+    }
+  }
 }
 
 module.exports = new UserService();

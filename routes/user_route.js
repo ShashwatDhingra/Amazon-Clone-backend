@@ -9,4 +9,7 @@ Router.post('/add-to-cart', authMiddleware, userController.addToCart);
 // Remove From Cart
 Router.delete('/remove-from-cart', authMiddleware, userController.removeFromCart);
 
+// Save the address
+Router.post('/save-address', authMiddleware, userController.saveAddress);
+
 module.exports = Router;
