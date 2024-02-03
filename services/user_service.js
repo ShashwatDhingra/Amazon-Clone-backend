@@ -74,6 +74,40 @@ class UserService {
       return { status: false, statusCode: 500, error: e.message };
     }
   }
+
+  async makeOrder(cart, totalPrice, address, userId) {
+    try {
+      let products = [];
+
+      for (let i = 0; i < cart.length; i++) {
+        let product = await productModel.findById(cart[i].product_id);
+        if (product.quantity >= cart[i].quantity) {
+          product.quantity == cart[i].quantity;
+          products.push({ product, quantity: cart[i].quantity });
+          await product.save();
+        } else {
+          return { status: false, statusCode: 400, message: `${product.name} is out of Stock.` };
+        }
+      }
+
+      let user = await userModel.findById(userId);
+      user.cart = [];
+      await user.save();
+
+      let order = new orderModel({
+        products,
+        totalPrice,
+        address,
+        userId: req.user,
+        orderAt: new Data().getTime()
+      });
+
+      order = await order.save();
+      return { status: true, statusCode: 200, order };
+    } catch (e) {
+      return { status: false, statusCode: 500, error: e.message };
+    }
+  }
 }
 
 module.exports = new UserService();

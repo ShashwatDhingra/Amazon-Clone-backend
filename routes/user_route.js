@@ -12,4 +12,8 @@ Router.delete('/remove-from-cart', authMiddleware, userController.removeFromCart
 // Save the address
 Router.post('/save-address', authMiddleware, userController.saveAddress);
 
+// Make Order
+Router.post('/order', authMiddleware, userController.makeOrder);
+
+
 module.exports = Router;

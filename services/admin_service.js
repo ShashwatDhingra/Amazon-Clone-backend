@@ -1,5 +1,5 @@
 const { default: mongoose } = require('mongoose');
-const {productModel} = require('../model/product_model');
+const { productModel } = require('../model/product_model');
 const { ObjectId } = require('mongodb');
 
 class AdminService {
@@ -25,14 +25,14 @@ class AdminService {
         }
     }
 
-    async deleteProduct(_id){
-        try{
-            const result = await productModel.deleteOne({_id});
-            if(result.deletedCount > 0) return {status: true, statusCode: 200, message: "Product Deleted !"};
+    async deleteProduct(_id) {
+        try {
+            const result = await productModel.deleteOne({ _id });
+            if (result.deletedCount > 0) return { status: true, statusCode: 200, message: "Product Deleted !" };
 
-            return {status: false, statusCode: 404, message: "Product not found."};
-        }catch(e){
-            return {status: false, statusCode: 500, error: e.message};
+            return { status: false, statusCode: 404, message: "Product not found." };
+        } catch (e) {
+            return { status: false, statusCode: 500, error: e.message };
         }
     }
 }
