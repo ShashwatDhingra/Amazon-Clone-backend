@@ -8,7 +8,7 @@ const orderSchema = mongoose.Schema({
         product: productSchema,
         quantity: {
             type: Number,
-            require: truee
+            require: true
         }
     }],
     totalPrice:  {
